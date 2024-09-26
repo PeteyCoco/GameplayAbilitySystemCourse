@@ -12,6 +12,7 @@ AAuraPlayerState::AAuraPlayerState()
 	// The player character's ability system component and attribute set are persisted in the player state
 	AbilitySystemComponent = CreateDefaultSubobject<UAuraAbilitySystemComponent>("AbilitySystemComponent");
 	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed); // Player controlled characters should use mixed
 
 	AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
 }

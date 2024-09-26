@@ -13,6 +13,7 @@ AAuraEnemy::AAuraEnemy()
 	// The enemy character ability system component and attribute set are managed on the character itself (i.e. no persistence outside of instance.)
 	AbilitySystemComponent = CreateDefaultSubobject<UAuraAbilitySystemComponent>("AbilitySystemComponent");
 	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);  // AI controlled characters should use mixed
 
 	AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
 
