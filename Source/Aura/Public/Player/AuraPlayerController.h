@@ -11,6 +11,8 @@ struct FInputActionValue;
 class UInputMappingContext;
 class UInputAction;
 
+class IEnemyInterface;
+
 /**
  * 
  */
@@ -28,6 +30,7 @@ protected:
 
 	// ACharacter overrides
 	virtual void SetupInputComponent() override;
+	virtual void PlayerTick(float DeltaTime) override;
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Input")
@@ -38,4 +41,13 @@ private:
 
 	// Move callback
 	void Move(const FInputActionValue& InputActionValue);
+
+	// Cursor trace
+	void CursorTrace();
+
+	// Actor hovered over in the previous cursor trace
+	TScriptInterface<IEnemyInterface> LastActor;
+
+	// Actor hovered over in the current cursor trace
+	TScriptInterface<IEnemyInterface> ThisActor;
 };
