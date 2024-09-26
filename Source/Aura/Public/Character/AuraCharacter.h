@@ -7,7 +7,7 @@
 #include "AuraCharacter.generated.h"
 
 /**
- * The player character actor
+ * The Aura player character actor
  */
 UCLASS()
 class AURA_API AAuraCharacter : public AAuraCharacterBase
