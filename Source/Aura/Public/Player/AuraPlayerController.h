@@ -25,10 +25,10 @@ public:
 	AAuraPlayerController();
 
 protected:
-	// AActor overrides
+	// AActor interface
 	virtual void BeginPlay() override;
 
-	// ACharacter overrides
+	// ACharacter interface
 	virtual void SetupInputComponent() override;
 	virtual void PlayerTick(float DeltaTime) override;
 
