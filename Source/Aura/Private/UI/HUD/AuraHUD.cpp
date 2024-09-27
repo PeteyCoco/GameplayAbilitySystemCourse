@@ -19,6 +19,9 @@ void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySyst
 	OverlayWidget = Cast<UAuraUserWidget>(Widget);
 	OverlayWidget->SetWidgetController(WidgetController);
 
+	// Broadcast now that the widgets are bound to the controller delegates (Make sure the widgets are bound!)
+	WidgetController->BroadcastInitialValues();
+
 	Widget->AddToViewport();
 }
 
