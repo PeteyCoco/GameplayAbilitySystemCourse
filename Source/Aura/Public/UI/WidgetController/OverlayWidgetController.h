@@ -9,6 +9,8 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChangedSignature, float, NewHealth);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxHealthChangedSignature, float, NewMaxHealth);
 
+struct FOnAttributeChangeData;
+
 /**
  * Widget controller for the HUD overlay
  */
@@ -20,6 +22,7 @@ class AURA_API UOverlayWidgetController : public UAuraWidgetController
 public:
 	// Begin UAuraWidgetController Interface
 	virtual void BroadcastInitialValues() override;
+	virtual void BindCallbacksToDependencies() override;
 	// End UAuraWidgetController Interface
 
 	// Begin attribute change delegates
@@ -29,5 +32,11 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
 	FOnMaxHealthChangedSignature OnMaxHealthChanged;
 	// End attribute change delegates
+
+protected:
+	// Begin attribute change callbacks
+	void HealthChanged(const FOnAttributeChangeData& Data) const;
+	void MaxHealthChanged(const FOnAttributeChangeData& Data) const;
+	// End attribute change callbacks
 
 };

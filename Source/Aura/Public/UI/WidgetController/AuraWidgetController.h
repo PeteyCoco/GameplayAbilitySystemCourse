@@ -51,6 +51,9 @@ public:
 
 	virtual void BroadcastInitialValues();
 
+	// Bind custom callback functions to GAS attribute change delegates
+	virtual void BindCallbacksToDependencies();
+
 protected:
 	/* Widget controller dependencies */
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
