@@ -76,4 +76,8 @@ protected:
 
 	// Map for tracking which actors have active gameplay effects from this actor
 	TMap<FActiveGameplayEffectHandle, UAbilitySystemComponent*> ActiveEffectHandles;
+
+	// Level used for GAS
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
+	float ActorLevel = 1.f;
 };
