@@ -20,22 +20,38 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 {
 	const UAuraAttributeSet* AuraAttributeSet = CastChecked<UAuraAttributeSet>(AttributeSet);
 
-	// Changes in attributes will trigger this controllers delegates
+	// Changes in a given attribute will trigger this controller's corresponding delegate
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetHealthAttribute())
-		.AddUObject(this, &UOverlayWidgetController::HealthChanged); // Whenever the Health attribute changes in the ability system, the callback HealthChanged will be called
+		.AddLambda(
+			[this](const FOnAttributeChangeData& Data) {
+				OnHealthChanged.Broadcast(Data.NewValue);
+			}
+	);
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetMaxHealthAttribute())
-		.AddUObject(this, &UOverlayWidgetController::MaxHealthChanged);
+		.AddLambda(
+			[this](const FOnAttributeChangeData& Data) {
+				OnMaxHealthChanged.Broadcast(Data.NewValue);
+			}
+	);
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetManaAttribute())
-		.AddUObject(this, &UOverlayWidgetController::ManaChanged);
+		.AddLambda(
+			[this](const FOnAttributeChangeData& Data) {
+				OnManaChanged.Broadcast(Data.NewValue);
+			}
+	);
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetMaxManaAttribute())
-		.AddUObject(this, &UOverlayWidgetController::MaxManaChanged);
+		.AddLambda(
+			[this](const FOnAttributeChangeData& Data) {
+				OnMaxManaChanged.Broadcast(Data.NewValue);
+			}
+	);
 
 	// Bind to the ASC delegates
 	Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda( // Called whenever a gameplay effect is applied to the ASC
 		[this](const FGameplayTagContainer& AssetTags)
 		{
 			for (const FGameplayTag& Tag : AssetTags)
-			{ 
+			{
 				// Broadcast widget data corresponding to a "Message" tag
 				FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
 				if (Tag.MatchesTag(MessageTag))
@@ -46,25 +62,4 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 			}
 		}
 	);
-}
-
-void UOverlayWidgetController::HealthChanged(const FOnAttributeChangeData& Data) const
-{
-	// Broadcast our new value to subscribers when GAS detects a change in the health attribute
-	OnHealthChanged.Broadcast(Data.NewValue);
-}
-
-void UOverlayWidgetController::MaxHealthChanged(const FOnAttributeChangeData& Data) const
-{
-	OnMaxHealthChanged.Broadcast(Data.NewValue);
-}
-
-void UOverlayWidgetController::ManaChanged(const FOnAttributeChangeData& Data) const
-{
-	OnManaChanged.Broadcast(Data.NewValue);
-}
-
-void UOverlayWidgetController::MaxManaChanged(const FOnAttributeChangeData& Data) const
-{
-	OnMaxManaChanged.Broadcast(Data.NewValue);
 }
