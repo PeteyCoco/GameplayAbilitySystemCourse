@@ -36,4 +36,7 @@ protected:
 
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;
+
+	// Set the owner and avatar for this character.
+	virtual void InitAbilityActorInfo();
 };

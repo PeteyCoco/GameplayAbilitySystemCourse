@@ -28,4 +28,8 @@ protected:
 	virtual void BeginPlay() override;
 	// End AActor interface //
 
+	// Begin AAuraCharacterBase interface
+	virtual void InitAbilityActorInfo() override;
+	// End AAuraCharacterBase interface
+
 };

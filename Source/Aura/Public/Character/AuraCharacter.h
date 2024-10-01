@@ -23,6 +23,8 @@ public:
 	// End APawn interface
 
 private:
-	// Set the owner and avatar for this character.
-	void InitAbilityActorInfo();
+	// Begin AAuraCharacterBase interface
+	virtual void InitAbilityActorInfo() override;
+	// End AAuraCharacterBase interface
+
 };

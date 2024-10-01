@@ -13,5 +13,13 @@ UCLASS()
 class AURA_API UAuraAbilitySystemComponent : public UAbilitySystemComponent
 {
 	GENERATED_BODY()
+
+public:
+	// When this function is called, we know AbilityActorInfo has been set. Used for binding delegates
+	void AbilityActorInfoSet();
+
+protected:
+	// Function called when a gameplay effect is applied to this ASC
+	void EffectApplied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle);
 	
 };
