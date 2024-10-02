@@ -9,6 +9,7 @@
 
 class UAbilitySystemComponent;
 class UAttributeSet;
+class UGameplayEffect;
 
 // Abstract base class for player and AI characters
 UCLASS(Abstract)
@@ -39,4 +40,12 @@ protected:
 
 	// Set the owner and avatar for this character.
 	virtual void InitAbilityActorInfo();
+
+	// Gameplay effect that applies the default attributes for this character's ASC
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
+	TSubclassOf<UGameplayEffect> DefaultPrimaryAttributes;
+
+	// Apply the default primary attributes effect to self
+	void InitializePrimaryAttributes() const;
+
 };
