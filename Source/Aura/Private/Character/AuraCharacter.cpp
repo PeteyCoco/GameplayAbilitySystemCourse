@@ -39,9 +39,8 @@ void AAuraCharacter::OnRep_PlayerState()
 int32 AAuraCharacter::GetPlayerLevel()
 {
 	const AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>();
-	if (!AuraPlayerState) return;
+	if (!AuraPlayerState) return 0;
 	return AuraPlayerState->GetPlayerLevel();
-
 }
 
 void AAuraCharacter::InitAbilityActorInfo()
