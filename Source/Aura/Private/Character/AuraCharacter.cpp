@@ -58,6 +58,7 @@ void AAuraCharacter::InitAbilityActorInfo()
 		}
 	}
 
-	InitializePrimaryAttributes();
+	// Initialize this character's attributes now that we have the ASC
+	InitializeDefaultAttributes();
 }
 

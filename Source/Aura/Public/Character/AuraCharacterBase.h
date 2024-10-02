@@ -41,11 +41,18 @@ protected:
 	// Set the owner and avatar for this character.
 	virtual void InitAbilityActorInfo();
 
+	// Convenience function for applying GEs to this character's ASC
+	void ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const;
+
+	// Initialize primary and secondary attributes
+	void InitializeDefaultAttributes() const;
+
 	// Gameplay effect that applies the default attributes for this character's ASC
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
 	TSubclassOf<UGameplayEffect> DefaultPrimaryAttributes;
 
-	// Apply the default primary attributes effect to self
-	void InitializePrimaryAttributes() const;
+	// Gameplay effect that updates secondary attributes for this character's ASC
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
+	TSubclassOf<UGameplayEffect> DefaultSecondaryAttributes;
 
 };
