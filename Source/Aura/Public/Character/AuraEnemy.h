@@ -23,6 +23,10 @@ public:
 	virtual void UnHighlightActor() override;
 	// End IEnemyInterface interface
 
+	// Begin ICombatInterface interface
+	virtual int32 GetPlayerLevel() override;
+	// End ICombatInterface interface
+
 protected:
 	// Begin AActor interface //
 	virtual void BeginPlay() override;
@@ -32,4 +36,6 @@ protected:
 	virtual void InitAbilityActorInfo() override;
 	// End AAuraCharacterBase interface
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
+	int32 Level = 1; // Not replicated; Server only needs this
 };
