@@ -31,8 +31,6 @@ public:
 	// This will eventually be called from the character class.
 	void InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS);
 
-protected:
-
 	/** 
 	* Singleton-like getter for the Overlay Widget Controller
 	* 
