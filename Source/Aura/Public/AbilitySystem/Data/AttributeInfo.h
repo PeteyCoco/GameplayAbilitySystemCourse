@@ -7,8 +7,6 @@
 #include "GameplayTagContainer.h"
 #include "AttributeInfo.generated.h"
 
-
-
 /*
 * Information struct that is passed up to widgets
 */

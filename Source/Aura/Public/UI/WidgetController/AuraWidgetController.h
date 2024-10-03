@@ -49,6 +49,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetWidgetControllerParams(const FWidgetControllerParams& WCParams);
 
+	UFUNCTION(BlueprintCallable)
 	virtual void BroadcastInitialValues();
 
 	// Bind custom callback functions to GAS attribute change delegates
