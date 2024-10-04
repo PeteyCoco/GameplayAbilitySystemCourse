@@ -10,6 +10,7 @@
 
 class UAbilitySystemComponent;
 class UAttributeSet;
+class UGameplayAbility;
 class UGameplayEffect;
 
 // Abstract base class for player and AI characters
@@ -59,5 +60,11 @@ protected:
 	// Gameplay effect that updates vital attributes for this character's ASC
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
 	TSubclassOf<UGameplayEffect> DefaultVitalAttributes;
+
+	// Gameplay abilities to grant on startup
+	UPROPERTY(EditAnywhere, Category = "Abilities")
+	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
+
+	void AddCharacterAbilities();
 
 };

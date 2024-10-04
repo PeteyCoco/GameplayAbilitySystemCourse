@@ -23,6 +23,8 @@ public:
 	// Delegate for the WidgetController to bind to
 	FEffectAssetTagsSignature EffectAssetTags;
 
+	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities);
+
 protected:
 	// Function called when a gameplay effect is applied to this ASC
 	void EffectApplied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle);
