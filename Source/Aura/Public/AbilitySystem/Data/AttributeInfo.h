@@ -49,6 +49,6 @@ public:
 	* Will print a debug message if tag not found and bLogNotFound = true
 	*/
 	UFUNCTION()
-	FAuraAttributeInfo FindAttributeInforForTag(const FGameplayTag& AttributeTag, bool bLogNotFound = false) const;
+	FAuraAttributeInfo FindAttributeInfoForTag(const FGameplayTag& AttributeTag, bool bLogNotFound = false) const;
 	
 };

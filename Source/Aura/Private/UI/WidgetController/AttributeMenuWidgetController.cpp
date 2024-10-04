@@ -15,8 +15,11 @@ void UAttributeMenuWidgetController::BroadcastInitialValues()
 	UAuraAttributeSet* AS = CastChecked<UAuraAttributeSet>(AttributeSet);
 
 	check(AttributeInfo);
-	FAuraAttributeInfo Info = AttributeInfo->FindAttributeInforForTag(FAuraGameplayTags::Get().Attributes_Primary_Strength);
-	Info.AttributeValue = AS->GetStrength();
 
-	AttributeInfoDelegate.Broadcast(Info);
+	for (auto& Pair : AS->TagsToAttributes)
+	{
+		FAuraAttributeInfo Info = AttributeInfo->FindAttributeInfoForTag(Pair.Key);
+		Info.AttributeValue = Pair.Value().GetNumericValue(AS); // Remember that Attr is returned from a static method (so it needs AS)
+		AttributeInfoDelegate.Broadcast(Info);
+	}
 }

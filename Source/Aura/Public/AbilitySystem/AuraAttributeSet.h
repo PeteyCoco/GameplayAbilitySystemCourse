@@ -51,6 +51,11 @@ struct FEffectProperties
 	TObjectPtr<ACharacter> TargetCharacter = nullptr;
 };
 
+
+// Static function pointer template typedef. Used for FGameplayAttribute() signature
+template<class T>
+using TStaticFuncPtr = typename TBaseStaticDelegateInstance<T, FDefaultDelegateUserPolicy>::FFuncPtr;
+
 /**
  * Aura base attribute set
  */
@@ -70,6 +75,9 @@ public:
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 	// End UAttributeSet interface
 	
+	// Mapping from Gameplay Tags to attribute accessor pointers
+	TMap<FGameplayTag, TStaticFuncPtr<FGameplayAttribute()>> TagsToAttributes;
+
 	// Primary attribute definitions
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Strength, Category = "Primary Attributes")
 	FGameplayAttributeData Strength;
