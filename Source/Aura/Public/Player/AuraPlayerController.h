@@ -4,10 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "GameplayTagContainer.h"
 #include "AuraPlayerController.generated.h"
 
 struct FInputActionValue;
 
+class UAuraInputConfig;
 class UInputMappingContext;
 class UInputAction;
 
@@ -50,4 +52,13 @@ private:
 
 	// Actor hovered over in the current cursor trace
 	TScriptInterface<IEnemyInterface> ThisActor;
+
+	// Input action callbacks
+	void AbilityInputTagPressed(FGameplayTag InputTag);
+	void AbilityInputTagReleased(FGameplayTag InputTag);
+	void AbilityInputTagHeld(FGameplayTag InputTag);
+
+	// Input COnfig data asset
+	UPROPERTY(EditDefaultsOnly, Category="Input")
+	TObjectPtr<UAuraInputConfig> InputConfig;
 };
