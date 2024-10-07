@@ -25,6 +25,10 @@ public:
 
 	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities);
 
+	void AbilityInputTagHeld(const FGameplayTag& InputTag);
+	void AbilityInputTagReleased(const FGameplayTag& InputTag);
+
+
 protected:
 	// Function called when a gameplay effect is applied to this ASC
 	void EffectApplied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle);

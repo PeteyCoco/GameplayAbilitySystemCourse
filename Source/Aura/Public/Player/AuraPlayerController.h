@@ -9,6 +9,7 @@
 
 struct FInputActionValue;
 
+class UAuraAbilitySystemComponent;
 class UAuraInputConfig;
 class UInputMappingContext;
 class UInputAction;
@@ -61,4 +62,10 @@ private:
 	// Input COnfig data asset
 	UPROPERTY(EditDefaultsOnly, Category="Input")
 	TObjectPtr<UAuraInputConfig> InputConfig;
+
+	UPROPERTY()
+	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
+
+	UAuraAbilitySystemComponent* GetASC();
+
 };
