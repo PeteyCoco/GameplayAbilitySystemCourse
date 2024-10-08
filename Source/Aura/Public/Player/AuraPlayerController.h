@@ -13,6 +13,7 @@ class UAuraAbilitySystemComponent;
 class UAuraInputConfig;
 class UInputMappingContext;
 class UInputAction;
+class USplineComponent;
 
 class IEnemyInterface;
 
@@ -59,7 +60,7 @@ private:
 	void AbilityInputTagReleased(FGameplayTag InputTag);
 	void AbilityInputTagHeld(FGameplayTag InputTag);
 
-	// Input COnfig data asset
+	// Input Config data asset
 	UPROPERTY(EditDefaultsOnly, Category="Input")
 	TObjectPtr<UAuraInputConfig> InputConfig;
 
@@ -68,4 +69,26 @@ private:
 
 	UAuraAbilitySystemComponent* GetASC();
 
+	// Movement destination
+	FVector CachedDestination = FVector::ZeroVector;
+
+	// How long have we been following the cursor?
+	float FollowTime = 0.f;
+
+	// Threshold that discriminates between a short press and a long press
+	float ShortPressThreshold = 0.5f;
+
+	// Is the character auto-running to a destination?
+	bool bAutoRunning = false;
+
+	// The acceptance radius while autorunning along a route.
+	UPROPERTY(EditDefaultsOnly)
+	float AutorunAcceptanceRadius = 50.f;
+
+	// Spline representing the path
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USplineComponent> Spline;
+
+	// True if the player is targeting something
+	bool bTargeting = false;
 };
