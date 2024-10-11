@@ -49,6 +49,9 @@ private:
 	// Cursor trace
 	void CursorTrace();
 
+	// Cached cursor location
+	FHitResult CursorHit;
+
 	// Actor hovered over in the previous cursor trace
 	TScriptInterface<IEnemyInterface> LastActor;
 
