@@ -91,4 +91,6 @@ private:
 
 	// True if the player is targeting something
 	bool bTargeting = false;
+
+	void AutoRun();
 };
