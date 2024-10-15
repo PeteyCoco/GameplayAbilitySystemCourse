@@ -18,9 +18,4 @@ public:
 	// Gameplay tag associated with this ability at startup
 	UPROPERTY(EditDefaultsOnly, Category="Input")
 	FGameplayTag StartupInputTag;
-
-protected:
-	// Begin UGameplayAbility interface
-	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
-	// End UGameplayAbility interface
 };

@@ -21,4 +21,7 @@ class AURA_API ICombatInterface
 
 public:
 	virtual int32 GetPlayerLevel();
+
+	/* Return the world location of the point where projectiles should be spawned.*/
+	virtual FVector GetCombatSocketLocation() const;
 };
