@@ -6,7 +6,7 @@
 #include "UObject/Interface.h"
 #include "CombatInterface.generated.h"
 
-UINTERFACE(MinimalAPI)
+UINTERFACE(MinimalAPI, BlueprintType)
 class UCombatInterface : public UInterface
 {
 	GENERATED_BODY()
@@ -24,4 +24,8 @@ public:
 
 	/* Return the world location of the point where projectiles should be spawned.*/
 	virtual FVector GetCombatSocketLocation() const;
+
+	/* Update the direction the caller is facing.*/
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	void UpdateFacingTarget(const FVector& Target);
 };
