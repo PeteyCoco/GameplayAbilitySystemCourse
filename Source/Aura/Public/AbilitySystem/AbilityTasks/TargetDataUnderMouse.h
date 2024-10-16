@@ -29,4 +29,7 @@ private:
 	// End UAbilityTask interface
 
 	void SendMouseCursorData();
+
+	// Function called when the target data is replicated
+	void OnTargetDataReplicatedCallback(const FGameplayAbilityTargetDataHandle& DataHandle, FGameplayTag ActivationTag);
 };
