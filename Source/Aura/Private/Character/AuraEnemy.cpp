@@ -49,4 +49,6 @@ void AAuraEnemy::InitAbilityActorInfo()
 {
 	AbilitySystemComponent->InitAbilityActorInfo(this, this); // AI controlled character is both the owner and avatar
 	Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet(); // Notify that AbilityActorInfo has been set on this ASC
+
+	InitializeDefaultAttributes();
 }

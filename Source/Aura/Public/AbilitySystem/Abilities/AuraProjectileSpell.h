@@ -7,6 +7,7 @@
 #include "AuraProjectileSpell.generated.h"
 
 class AAuraProjectile;
+class UGameplayEffect;
 
 /**
  * Base class for projectile spells
@@ -20,11 +21,16 @@ protected:
 	// Begin UGameplayAbility interface
 	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
 	// End UGameplayAbility interface
-	
-	// Class of the projectile actor
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSubclassOf<AAuraProjectile> ProjectileClass;
+
 
 	UFUNCTION(BlueprintCallable, Category = "Projectile")
 	void SpawnProjectile(const FVector& ProjectileTargetLocation);
+
+	// The projectile actor associated with this spell
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Projectile")
+	TSubclassOf<AAuraProjectile> ProjectileClass;
+
+	// The gameplay effect associated with this spell
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
+	TSubclassOf<UGameplayEffect> DamageEffectClass;
 };
