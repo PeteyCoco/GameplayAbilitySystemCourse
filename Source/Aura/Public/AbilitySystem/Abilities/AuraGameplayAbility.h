@@ -18,4 +18,8 @@ public:
 	// Gameplay tag associated with this ability at startup
 	UPROPERTY(EditDefaultsOnly, Category="Input")
 	FGameplayTag StartupInputTag;
+
+	// Level-scaled ability damage
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Damage")
+	FScalableFloat Damage;
 };
