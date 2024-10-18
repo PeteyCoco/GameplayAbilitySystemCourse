@@ -54,7 +54,7 @@ protected:
 	void ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const;
 
 	// Initialize primary and secondary attributes
-	void InitializeDefaultAttributes() const;
+	virtual void InitializeDefaultAttributes() const;
 
 	// Gameplay effect that applies the default attributes for this character's ASC
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
