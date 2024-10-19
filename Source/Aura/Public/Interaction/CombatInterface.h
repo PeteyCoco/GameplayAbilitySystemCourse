@@ -28,4 +28,7 @@ public:
 	/* Update the direction the caller is facing.*/
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 	void UpdateFacingTarget(const FVector& Target);
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	UAnimMontage* GetHitReactMontage();
 };

@@ -39,6 +39,7 @@ protected:
 
 	// Begin ICombatInterface interface
 	virtual FVector GetCombatSocketLocation() const override;
+	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
 	// End ICombatInterface interface
 
 	UPROPERTY()
@@ -73,5 +74,9 @@ protected:
 	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
 
 	void AddCharacterAbilities();
+
+	// Montage to play when this character is hit
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	TObjectPtr<UAnimMontage> HitReactMontage;
 
 };
