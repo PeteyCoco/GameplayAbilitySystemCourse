@@ -40,7 +40,12 @@ protected:
 	// Begin ICombatInterface interface
 	virtual FVector GetCombatSocketLocation() const override;
 	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
+	virtual void Die() override;
 	// End ICombatInterface interface
+
+	// Handle what happens on all clients when this character dies
+	UFUNCTION(NetMulticast, Reliable)
+	virtual void MulticastHandleDeath();
 
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;

@@ -31,4 +31,6 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	UAnimMontage* GetHitReactMontage();
+
+	virtual void Die() = 0;
 };
