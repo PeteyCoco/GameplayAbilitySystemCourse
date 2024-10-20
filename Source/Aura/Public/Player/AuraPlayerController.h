@@ -11,6 +11,7 @@ struct FInputActionValue;
 
 class UAuraAbilitySystemComponent;
 class UAuraInputConfig;
+class UDamageTextComponent;
 class UInputMappingContext;
 class UInputAction;
 class USplineComponent;
@@ -28,13 +29,18 @@ class AURA_API AAuraPlayerController : public APlayerController
 public:
 	AAuraPlayerController();
 
-protected:
-	// AActor interface
-	virtual void BeginPlay() override;
+	UFUNCTION(Client, Reliable)
+	void ShowDamageNumber(float DamageAmount, ACharacter* TargetCharacter);
 
-	// ACharacter interface
+protected:
+	//~ Begin AActor interface
+	virtual void BeginPlay() override;
+	//~ End AActor interface
+
+	//~ Begin ACharacter interface
 	virtual void SetupInputComponent() override;
 	virtual void PlayerTick(float DeltaTime) override;
+	//~ End ACharacter interface
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Input")
@@ -105,4 +111,7 @@ private:
 	bool bTargeting = false;
 
 	void AutoRun();
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UDamageTextComponent> DamageTextComponentClass;
 };
