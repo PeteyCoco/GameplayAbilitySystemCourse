@@ -4,8 +4,10 @@
 #include "AbilitySystem/ExecCalc/ExecCalcDamage.h"
 
 #include "AbilitySystemComponent.h"
+#include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AuraGameplayTags.h"
+#include "Interaction/CombatInterface.h"
 
 struct AuraDamageStatics
 {
@@ -43,6 +45,9 @@ void UExecCalcDamage::Execute_Implementation(const FGameplayEffectCustomExecutio
 	const AActor* SourceAvatar = SourceASC ? SourceASC->GetAvatarActor() : nullptr;
 	const AActor* TargetAvatar = TargetASC ? TargetASC->GetAvatarActor() : nullptr;
 
+	const ICombatInterface* SourceCombatInterface = Cast<ICombatInterface>(SourceAvatar);
+	const ICombatInterface* TargetCombatInterface = Cast<ICombatInterface>(TargetAvatar);
+
 	const FGameplayEffectSpec& Spec = ExecutionParams.GetOwningSpec();
 
 	FAggregatorEvaluateParameters EvaluationParameters;
@@ -67,11 +72,17 @@ void UExecCalcDamage::Execute_Implementation(const FGameplayEffectCustomExecutio
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorDef, EvaluationParameters, SourceArmorPenetration);
 	SourceArmorPenetration = FMath::Max<float>(0.f, SourceArmorPenetration);
 
-	// Armor Penetration ignores a percentage of the Target's armor
-	const float EffectiveArmor = TargetArmor * (100.f - SourceArmorPenetration * 0.25f) / 100.f;
-	// Armor ignores a percentage of the incoming damage
-	Damage *= (100.f - EffectiveArmor * 0.333f) / 100.f;
+	const UCharacterClassInfo* CharacterClassInfo = UAuraAbilitySystemLibrary::GetCharacterClassInfo(SourceAvatar);
 
+	// Armor Penetration ignores a percentage of the Target's armor
+	const FRealCurve* ArmorPenetrationCurve = CharacterClassInfo->DamageCalculationCoefficients->FindCurve(FName("ArmorPenetration"), FString());
+	const float ArmorPenetrationCoefficient = ArmorPenetrationCurve->Eval(SourceCombatInterface->GetPlayerLevel());
+	const float EffectiveArmor = TargetArmor * (100.f - SourceArmorPenetration * ArmorPenetrationCoefficient) / 100.f;
+
+	// Armor ignores a percentage of the incoming damage
+	const FRealCurve* EffectiveArmorCurve = CharacterClassInfo->DamageCalculationCoefficients->FindCurve(FName("EffectiveArmor"), FString());
+	const float EffectiveArmorCoefficient = EffectiveArmorCurve->Eval(SourceCombatInterface->GetPlayerLevel());
+	Damage *= (100.f - EffectiveArmor * EffectiveArmorCoefficient) / 100.f;
 
 	// Output incoming damage calculation result
 	FGameplayModifierEvaluatedData EvaluatedData(UAuraAttributeSet::GetIncomingDamageAttribute(), EGameplayModOp::Additive, Damage);

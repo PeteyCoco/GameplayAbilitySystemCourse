@@ -28,7 +28,7 @@ public:
 	// End IEnemyInterface interface
 
 	// Begin ICombatInterface interface
-	virtual int32 GetPlayerLevel() override;
+	virtual int32 GetPlayerLevel() const override;
 	virtual void Die() override;
 	// End ICombatInterface interface
 
