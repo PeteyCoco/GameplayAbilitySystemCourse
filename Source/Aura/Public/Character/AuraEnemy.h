@@ -9,6 +9,9 @@
 #include "UI/WidgetController/OverlayWidgetController.h"
 #include "AuraEnemy.generated.h"
 
+class AAuraAIController;
+
+class UBehaviorTree;
 class UWidgetComponent;
 
 /**
@@ -22,15 +25,19 @@ class AURA_API AAuraEnemy : public AAuraCharacter, public IEnemyInterface
 public:
 	AAuraEnemy();
 
-	// Begin IEnemyInterface interface
+	//~ Begin APawn interface
+	virtual void PossessedBy(AController* NewController) override;
+	//~ End APawn interface
+
+	//~ Begin IEnemyInterface interface
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
-	// End IEnemyInterface interface
+	//~ End IEnemyInterface interface
 
-	// Begin ICombatInterface interface
+	//~ Begin ICombatInterface interface
 	virtual int32 GetPlayerLevel() const override;
 	virtual void Die() override;
-	// End ICombatInterface interface
+	//~ End ICombatInterface interface
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat")
 	float LifeSpan = 5.f;
@@ -68,4 +75,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UWidgetComponent> HealthBar;
 
+	UPROPERTY(EditAnywhere, Category = "AI")
+	TObjectPtr<UBehaviorTree> BehaviorTree;
+
+	UPROPERTY()
+	TObjectPtr<AAuraAIController> AuraAIController;
 };
