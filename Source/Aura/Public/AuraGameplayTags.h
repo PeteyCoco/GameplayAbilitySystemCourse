@@ -59,6 +59,9 @@ public:
 
 	FGameplayTag Effects_HitReact;
 
+	// Ability Type tags
+	FGameplayTag Abilities_Attack;
+
 protected:
 
 private:
