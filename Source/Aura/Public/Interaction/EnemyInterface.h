@@ -23,4 +23,5 @@ public:
 	// Highlight the actor in the scene
 	virtual void HighlightActor() = 0;
 	virtual void UnHighlightActor() = 0;
+
 };
