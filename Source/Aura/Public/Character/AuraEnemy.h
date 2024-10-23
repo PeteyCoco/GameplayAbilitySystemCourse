@@ -57,14 +57,14 @@ public:
 	float BaseWalkSpeed = 250.f;
 
 protected:
-	// Begin AActor interface //
+	//~ Begin AActor interface
 	virtual void BeginPlay() override;
-	// End AActor interface //
+	//~ End AActor interface
 
-	// Begin AAuraCharacterBase interface
+	//~ Begin AAuraCharacterBase interface
 	virtual void InitAbilityActorInfo() override;
 	virtual void InitializeDefaultAttributes() const override;
-	// End AAuraCharacterBase interface
+	//~ End AAuraCharacterBase interface
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
 	int32 Level = 1; // Not replicated; Server only needs this
@@ -75,6 +75,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UWidgetComponent> HealthBar;
 
+	/*
+	* AI Controller
+	*/
 	UPROPERTY(EditAnywhere, Category = "AI")
 	TObjectPtr<UBehaviorTree> BehaviorTree;
 
