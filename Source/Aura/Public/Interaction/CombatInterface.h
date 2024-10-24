@@ -23,7 +23,8 @@ public:
 	virtual int32 GetPlayerLevel() const;
 
 	/* Return the world location of the point where projectiles should be spawned.*/
-	virtual FVector GetCombatSocketLocation() const;
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	FVector GetCombatSocketLocation() const;
 
 	/* Update the direction the caller is facing.*/
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)

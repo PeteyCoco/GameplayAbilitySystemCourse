@@ -38,7 +38,7 @@ protected:
 	FName WeaponTipSocketName;
 
 	// Begin ICombatInterface interface
-	virtual FVector GetCombatSocketLocation() const override;
+	virtual FVector GetCombatSocketLocation_Implementation() const override;
 	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
 	virtual void Die() override;
 	// End ICombatInterface interface
