@@ -37,7 +37,7 @@ public:
 
 	/* Return the world location of the point where projectiles should be spawned.*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	FVector GetCombatSocketLocation() const;
+	FVector GetCombatSocketLocation(const FGameplayTag& MontageTag) const;
 
 	/* Update the direction the caller is facing.*/
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
