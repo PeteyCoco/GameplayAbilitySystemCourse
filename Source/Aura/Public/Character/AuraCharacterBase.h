@@ -28,20 +28,24 @@ public:
 	// Getter for the Attribute Set
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
+	// Begin ICombatInterface interface
+	virtual FVector GetCombatSocketLocation_Implementation() const override;
+	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
+	virtual void Die() override;
+	virtual bool IsDead_Implementation() const override;
+	virtual AActor* GetAvatar_Implementation() override;
+	// End ICombatInterface interface
+
 protected:
 	virtual void BeginPlay() override;
+
+	bool bIsDead = false;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	FName WeaponTipSocketName;
-
-	// Begin ICombatInterface interface
-	virtual FVector GetCombatSocketLocation_Implementation() const override;
-	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
-	virtual void Die() override;
-	// End ICombatInterface interface
 
 	// Handle what happens on all clients when this character dies
 	UFUNCTION(NetMulticast, Reliable)

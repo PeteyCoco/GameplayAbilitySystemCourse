@@ -36,6 +36,12 @@ public:
 	virtual void Die() = 0;
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	bool IsDead() const;
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	AActor* GetAvatar();
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void SetCombatTarget(AActor* InCombatTarget);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
