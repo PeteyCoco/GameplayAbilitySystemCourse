@@ -4,9 +4,9 @@ This repository tracks my progress through the Gameplay Ability System course av
 
 Topics covered:
  
-    In-depth survey of GAS in a multiplayer action RPG
-    Interplay of GAS and gameplay tags
-    Architecting a project following examples in the Lyra sample project
+- In-depth survey of GAS in a multiplayer action RPG
+- Interplay of GAS and gameplay tags
+- Architecting a project following examples in the Lyra sample project
 
 
 ## Screenshot
